@@ -164,7 +164,7 @@ def handle_chat(user_query, conversation_history):
     try:
         response = ollama.chat(
             model=OLLAMA_VERSION,
-            messages=[{'role': 'user', 'prompt': chat_data, 'stream': False}]
+            messages=[{'role': 'user', 'prompt': chat_data, 'stream': False, "keep_alive": -1}]
         )["message"]["content"]
     except Exception as e:
         return f"Model processing failed: {e}"
