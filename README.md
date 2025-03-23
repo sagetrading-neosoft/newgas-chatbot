@@ -1,4 +1,3 @@
-```markdown
 # 🧠 PDF Chatbot with Elasticsearch & Ollama
 
 This project is a real-time chatbot powered by **Flask**, **Flask-SocketIO**, **Elasticsearch**, and a local LLM (via **Ollama**). It ingests PDF documents, splits their content into searchable chunks, and allows users to query this content through a chat interface.
@@ -43,13 +42,13 @@ This project is a real-time chatbot powered by **Flask**, **Flask-SocketIO**, **
    ```env
    APP_ENV=prod
    ES_HOST=http://localhost:9200
-   LLM_MODEL=llama3.2
+   LLM_MODEL=llama3.3
    CHUNK_SIZE=1024
    TOP_K_RESULTS=5
    CONVERSATION_LENGTH=5
    PDF_FOLDER_PATH=pdf_data
    INDEX_NAME=data_chunks
-   OLLAMA_VERSION=llama3.2
+   OLLAMA_VERSION=llama3.3
    SECRET_KEY=dev-secret-key
    ```
 
