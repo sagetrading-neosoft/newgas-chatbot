@@ -26,12 +26,7 @@ INDEX_NAME = os.getenv("INDEX_NAME", "data_chunks")
 OLLAMA_VERSION = os.getenv("OLLAMA_VERSION", "llama3.2")
 
 # Optionally load Elasticsearch credentials (only used in prod)
-es_user = os.getenv("ES_USER")
-es_password = os.getenv("ES_PASSWORD")
-if es_user and es_password:
-    es = Elasticsearch(hosts=[ES_HOST], http_auth=(es_user, es_password), verify_certs=False)
-else:
-    es = Elasticsearch(hosts=[ES_HOST])
+es = Elasticsearch(hosts=[ES_HOST], verify_certs=False)
 
 # Create Flask app, enable CORS and set up SocketIO
 app = Flask(__name__)
@@ -164,7 +159,8 @@ def handle_chat(user_query, conversation_history):
     try:
         response = ollama.chat(
             model=OLLAMA_VERSION,
-            messages=[{'role': 'user', 'prompt': chat_data, 'stream': False, "keep_alive": -1}]
+            messages=[{'role': 'user', 'content': chat_data, 'stream': False}],
+            keep_alive=-1
         )["message"]["content"]
     except Exception as e:
         return f"Model processing failed: {e}"
