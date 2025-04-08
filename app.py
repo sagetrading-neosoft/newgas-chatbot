@@ -31,7 +31,7 @@ es = Elasticsearch(hosts=[ES_HOST], verify_certs=False)
 # Create Flask app, enable CORS and set up SocketIO
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
-socketio = SocketIO(app, cors_allowed_origins="*")
+socketio = SocketIO(app, cors_allowed_origins="*", async_mode='eventlet')
 
 # Global dictionary to hold conversation history per session
 conversation_histories = {}
